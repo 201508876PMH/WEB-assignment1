@@ -1,0 +1,34 @@
+<body>
+    <% include ../views/layout.ejs %>
+    <div class="mainContent">
+        <h2>Create account:</h2>
+        <p><%= err %></p>
+        <form method="POST" action="/createAccount">
+            <div class="form-group">
+                <label for="inputFirstName">First name:</label>
+                <input type="text" class="form-control" name="inputFirstName" placeholder="Enter first name" autofocus>
+            </div>
+            <div class="form-group">
+                <label for="inputLastName">Last name:</label>
+                <input type="text" class="form-control" name="inputLastName" placeholder="Enter last name">
+            </div>
+            <div class="form-group">
+                <label for="inputPassword">Password</label>
+                <input type="password" class="form-control" name="inputPassword" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="inputEmail">Email address</label>
+                <input type="email" class="form-control" name="inputEmail" aria-describedby="emailHelp"
+                    placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                    else.</small>
+            </div>
+            <div class="form-group">
+                <label for="inputZipcode">Zip code:</label>
+                <input type="text" class="form-control" name="inputZipcode" placeholder="Enter zip code">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+</body>
