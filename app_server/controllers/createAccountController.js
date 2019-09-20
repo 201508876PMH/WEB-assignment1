@@ -1,8 +1,10 @@
 var UserModel = require('../models/user');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 module.exports.get = function (req, res) {
     var error = req.query.err
-    res.render('createAccount', { title: 'Express', err: error});
+    res.render('createAccount', { title: 'Express', err: error });
 };
 
 module.exports.post = function (req, res) {
@@ -17,19 +19,19 @@ module.exports.post = function (req, res) {
         zipCode: req.body.inputZipcode
     });
 
-    // Save the new model instance, passing a callback
-    newUser.save(function (err) {
-        if (err){
-            res.redirect('/createAccount?err=' + err.message);
-            return console.log(err.message) ;
-        } 
+    bcrypt.hash(newUser.password, saltRounds).then(function (hash) {
+        newUser.password = hash;
 
-        console.log("A user with first name:" + req.body.inputFirstName + "was succesfully created!");
-        res.redirect('/');
-        // saved!
+        // Save the new model instance, passing a callback
+        newUser.save(function (err) {
+            if (err) {
+                res.redirect('/createAccount?err=' + err.message);
+                return console.log(err.message);
+            }
+
+            console.log("A user with first name:" + req.body.inputFirstName + "was succesfully created!");
+            res.redirect('/');
+            // saved!
+        });
     });
-
-
 }
-
-

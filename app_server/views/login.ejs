@@ -1,0 +1,17 @@
+<body>
+    <% include ../views/layout.ejs %>
+    <div class="mainContent">
+        <h2>Login:</h2>
+        <form method="POST" action="/login">
+            <div class="form-group">
+                <label for="inputEmail">Email address</label>
+                <input type="email" class="form-control" name="inputEmail" placeholder="email@example.com">
+            </div>
+            <div class="form-group">
+                <label for="inputPassword">Password</label>
+                <input type="password" class="form-control" name="inputPassword" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary">Sign in</button>
+        </form>
+    </div>
+</body>
