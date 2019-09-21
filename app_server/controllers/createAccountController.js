@@ -22,6 +22,7 @@ module.exports.post = function (req, res) {
 
     bcrypt.hash(newUser.password, saltRounds).then(function (hash) {
         newUser.password = hash;
+    });
 
     // Save the new model instance, passing a callback
     newUser.save(function (err) {
