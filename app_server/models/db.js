@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var dbURI = 'mongodb://localhost/FitnessApp';
-mongoose.connect(dbURI);
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 
 mongoose.connection.on('connected', () => {
     console.log(`Mongoose connected to ${dbURI}`);
