@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
-const ctrlMain = require('../controllers/main');
+const ctrl = require('../controllers/workoutProgramController');
 
-router.get('/', ctrlMain.workoutprogram.get);
+router.get('/', ctrl.get);
+router.get('/createworkoutprogram', ctrl.createworkoutprogram);
+router.post('/createworkoutprogram', ctrl.post);
 module.exports = router;

@@ -1,0 +1,12 @@
+<% include ../views/partials/header.ejs %>
+<div class="mainContent">
+    <h2>Create workout program</h2>
+    <form method="POST" action="/workoutprogram/createworkoutprogram">
+        <div class="form-group">
+            <label for="name">Workout program name</label>
+            <input type="name" class="form-control" name="name" placeholder="name">
+        </div>
+        <button type="submit" class="btn btn-primary">Create new workout program</button>
+    </form>
+</div>
+<% include ../views/partials/footer.ejs %>

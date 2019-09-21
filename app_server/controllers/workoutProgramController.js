@@ -1,3 +1,4 @@
+var mongoose = require('mongoose');
 var WorkoutModel = require('../models/workoutprogram');
 
 module.exports.get = function (req, res) {
@@ -20,8 +21,13 @@ module.exports.post = function (req, res) {
             return console.log(err.message) ;
         } 
 
-        console.log("A workout program with name: " + req.body.inputFirstName + " was succesfully created!");
+        console.log("A workout program with name: " + req.body.name + " was succesfully created!");
         res.redirect('/');
         // saved!
     });
+}
+
+module.exports.createworkoutprogram = function(req, res) {
+    var error = req.query.err
+    res.render('createworkoutprogram', { title: 'Create workoutprogram', err: error});
 }
