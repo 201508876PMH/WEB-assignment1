@@ -8,6 +8,7 @@ console.log(controllerLocations);
 router.get('/', controllerLocations.index.get);
 
 router.get('/createAccount', controllerLocations.createAccount.get);
+router.get('/userconfirmation', controllerLocations.createAccount.userconfirmation);
 router.post('/createAccount', controllerLocations.createAccount.post);
 
 router.get('/login', controllerLocations.login.get);

@@ -19,19 +19,24 @@ module.exports.post = function (req, res) {
         zipCode: req.body.inputZipcode
     });
 
+
     bcrypt.hash(newUser.password, saltRounds).then(function (hash) {
         newUser.password = hash;
 
-        // Save the new model instance, passing a callback
-        newUser.save(function (err) {
-            if (err) {
-                res.redirect('/createAccount?err=' + err.message);
-                return console.log(err.message);
-            }
+    // Save the new model instance, passing a callback
+    newUser.save(function (err) {
+        if (err){
+            res.redirect('/createAccount?err=' + err.message);
+            return console.log(err.message) ;
+        } 
 
-            console.log("A user with first name:" + req.body.inputFirstName + "was succesfully created!");
-            res.redirect('/');
-            // saved!
-        });
+        console.log("A user with first name:" + req.body.inputFirstName + " was succesfully created!"); 
+        res.redirect('/userconfirmation');   
+        // saved!
     });
+}
+
+module.exports.userconfirmation = function(req, res) {
+    var error = req.query.err
+    res.render('userconfirmation', { title: 'User confirmation', err: error});
 }

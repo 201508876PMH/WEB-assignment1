@@ -2,8 +2,6 @@ var mongoose = require('mongoose');
 var dbURI = 'mongodb://localhost/FitnessApp';
 mongoose.connect(dbURI);
 
-
-
 mongoose.connection.on('connected', () => {
     console.log(`Mongoose connected to ${dbURI}`);
 });
@@ -13,8 +11,6 @@ mongoose.connection.on('error', err => {
 mongoose.connection.on('disconnected', () => {
     console.log('Mongoose disconnected');
 });
-
-
 
 // For nodemon restarts
 process.once('SIGUSR2', () => {
