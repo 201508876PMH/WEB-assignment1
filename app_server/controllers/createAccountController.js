@@ -24,12 +24,15 @@ module.exports.post = function (req, res) {
             return console.log(err.message) ;
         } 
 
-        console.log("A user with first name:" + req.body.inputFirstName + "was succesfully created!");
-        res.redirect('/');
+        console.log("A user with first name:" + req.body.inputFirstName + " was succesfully created!"); 
+        res.redirect('/userconfirmation');   
         // saved!
     });
+}
 
-
+module.exports.userconfirmation = function(req, res) {
+    var error = req.query.err
+    res.render('userconfirmation', { title: 'User confirmation', err: error});
 }
 
 

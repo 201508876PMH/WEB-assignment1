@@ -7,6 +7,6 @@ console.log(controllerLocations);
 /* Locations pages */
 router.get('/', controllerLocations.index);
 router.get('/createAccount', controllerLocations.createAccount.get);
+router.get('/userconfirmation', controllerLocations.createAccount.userconfirmation);
 router.post('/createAccount', controllerLocations.createAccount.post);
-//router.get('/workoutProgram', controllerLocations.workoutProgram.get);
 module.exports = router;
