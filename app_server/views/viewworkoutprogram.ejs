@@ -1,0 +1,15 @@
+<% include ../views/partials/header.ejs %>
+<div class="mainContent">
+    <h1><%= title %></h1>
+    <p></p>
+    <a href='/workoutprograms/<%= workoutprogramid %>/addexercise' class="btn btn-primary" role="button"><i class="fa fa-plus"></i>
+        Add exercise</a>
+    <ul>
+        <% for(var i=0; i<exerciselist.length; i++) { %>
+        <li>
+            <%= exerciselist[i].name %>
+        </li>
+        <% } %>
+    </ul>
+</div>
+<% include ../views/partials/footer.ejs %>

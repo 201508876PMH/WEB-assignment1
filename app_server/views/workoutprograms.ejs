@@ -2,12 +2,14 @@
 <div class="mainContent">
     <h1><%= title %></h1>
     <p></p>
-    <a href='/workoutprogram/createworkoutprogram' class="btn btn-primary" role="button"><i class="fa fa-plus"></i>
+    <a href='/workoutprograms/createworkoutprogram' class="btn btn-primary" role="button"><i class="fa fa-plus"></i>
         Create workout program</a>
     <ul>
         <% for(var i=0; i<workoutlist.length; i++) { %>
         <li>
-            <%= workoutlist[i].name %>
+            <a href='/workoutprograms/<%= workoutlist[i]._id %>'>
+                <%= workoutlist[i].name %>
+            </a>
         </li>
         <% } %>
     </ul>
