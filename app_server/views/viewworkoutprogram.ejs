@@ -1,15 +1,29 @@
 <% include ../views/partials/header.ejs %>
 <div class="mainContent">
-    <h1><%= title %></h1>
+    <h1><%= title %> - <%= workoutprogram.name %></h1>
     <p></p>
-    <a href='/workoutprograms/<%= workoutprogramid %>/addexercise' class="btn btn-primary" role="button"><i class="fa fa-plus"></i>
+    <a href='/workoutprograms/<%= workoutprogramid %>/addexercise' class="btn btn-primary" role="button"><i
+            class="fa fa-plus"></i>
         Add exercise</a>
-    <ul>
-        <% for(var i=0; i<exerciselist.length; i++) { %>
-        <li>
-            <%= exerciselist[i].name %>
-        </li>
-        <% } %>
-    </ul>
-</div>
-<% include ../views/partials/footer.ejs %>
+    <p></p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Exercise</th>
+                <th scope="col">Description</th>
+                <th scope="col">Set</th>
+                <th scope="col">Reps/time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(var i=0; i<workoutprogram.exercises.length; i++) { %>
+            <tr>
+                <td><%= workoutprogram.exercises[i].exercise %></td>
+                <td><%= workoutprogram.exercises[i].description %></td>
+                <td><%= workoutprogram.exercises[i].set %></td>
+                <td><%= workoutprogram.exercises[i].reps_time %></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <% include ../views/partials/footer.ejs %>

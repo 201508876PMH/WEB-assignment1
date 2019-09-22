@@ -1,5 +1,5 @@
-//import {Exercise} from './exercise';
 const mongoose = require('mongoose');
+var exerciseSchema = require('./exercise');
 const Schema = mongoose.Schema;
 
 const workoutSchema = new Schema({
@@ -7,6 +7,7 @@ const workoutSchema = new Schema({
     type: String,
     required: true
   },
+  exercises: [exerciseSchema]
 });
 
 module.exports = mongoose.model('WorkoutProgram', workoutSchema);

@@ -6,6 +6,6 @@ router.get('/', ctrl.get);
 router.get('/createworkoutprogram', ctrl.createworkoutprogram);
 router.post('/createworkoutprogram', ctrl.post);
 router.get('/:workoutprogramid/addexercise', ctrl.addexerciseget);
-//router.post('/addexercise', ctrl.addexericse);
+router.post('/:workoutprogramid/addexercise', ctrl.addexercise);
 router.get('/:workoutprogramid', ctrl.viewworkoutprogram);
 module.exports = router;

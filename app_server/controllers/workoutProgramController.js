@@ -1,10 +1,11 @@
 var mongoose = require('mongoose');
 var WorkoutModel = require('../models/workoutprogram');
+var exerciseSchema = require('../models/exercise');
 
 module.exports.get = function (req, res) {
     var error = req.query.err;
-    WorkoutModel.find({}, function (err, items){
-        res.render('workoutprograms', { title: 'Workout', workoutlist: items, err: error});
+    WorkoutModel.find({}, function (err, items) {
+        res.render('workoutprograms', { title: 'Workout', workoutlist: items, err: error });
     });
 };
 
@@ -18,10 +19,10 @@ module.exports.post = function (req, res) {
 
     // Save the new model instance, passing a callback
     newWorkoutProgram.save(function (err) {
-        if (err){
+        if (err) {
             res.redirect('/workoutprograms?err=' + err.message);
-            return console.log(err.message) ;
-        } 
+            return console.log(err.message);
+        }
 
         console.log("A workout program with name: " + req.body.name + " was succesfully created!");
         res.redirect('/workoutprograms');
@@ -29,19 +30,49 @@ module.exports.post = function (req, res) {
     });
 }
 
-module.exports.createworkoutprogram = function(req, res) {
+module.exports.createworkoutprogram = function (req, res) {
     var error = req.query.err;
-    res.render('createworkoutprogram', { title: 'Create workoutprogram', err: error});
+    res.render('createworkoutprogram', { title: 'Create workoutprogram', err: error });
 }
 
-module.exports.addexerciseget = function(req, res) {
+module.exports.addexerciseget = function (req, res) {
     var error = req.query.err;
-    res.render('addexercise', { title: 'Add exercise to workout program', err: error});
-}
-
-module.exports.viewworkoutprogram = function(req,res) {
-    console.log(req.params);
     var workoutprogramid = req.params.workoutprogramid;
+    WorkoutModel.findById(workoutprogramid, function (err, doc) {
+        res.render('addexercise', { title: 'Add exercise to workout program', workoutprogram: doc, err: error });
+    });
+
+}
+
+module.exports.viewworkoutprogram = function (req, res) {
+    //console.log(req.params);
     var error = req.query.err;
-    res.render('viewworkoutprogram', {title: 'View workout program', exerciselist: [], workoutprogramid: workoutprogramid,  err: error});
+    var workoutprogramid = req.params.workoutprogramid;
+    WorkoutModel.findById(workoutprogramid, function (err, doc) {
+        res.render('viewworkoutprogram', { title: 'View workout program', workoutprogram: doc, workoutprogramid: workoutprogramid, err: error });
+    });
+}
+
+module.exports.addexercise = function (req, res) {
+    console.log(req.body);
+
+    var workoutprogramid = req.params.workoutprogramid;
+    WorkoutModel.findById(workoutprogramid, function (err, doc) {
+        var parent = doc;
+        var exerciseModel = mongoose.model('exerciseModel', exerciseSchema);
+        var exercise = new exerciseModel({
+            exercise: req.body.exercise,
+            description: req.body.description,
+            set: req.body.set,
+            reps_time: req.body.reps
+        });
+        parent.exercises.push(exercise);
+
+        parent.save(function (err) {
+            if (err) {
+                console.log(err.message);
+            }
+            res.redirect('/workoutprograms/' + workoutprogramid);
+        });
+    });
 }

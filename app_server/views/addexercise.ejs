@@ -1,7 +1,7 @@
 <% include ../views/partials/header.ejs %>
 <div class="mainContent">
-    <h2>Add exercise to workout program</h2>
-    <form method="POST" action="/workoutprograms/createworkoutprogram">
+    <h2>Add exercise to the <%= workoutprogram.name %> workout program</h2>
+    <form method="POST" action="/workoutprograms/<%= workoutprogram._id %>/addexercise">
         <div class="form-group">
             <label for="exercise">Exercise</label>
             <input type="text" class="form-control" name="exercise" placeholder="Exercise">
