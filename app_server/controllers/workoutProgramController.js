@@ -3,7 +3,16 @@ var WorkoutModel = require('../models/workoutprogram');
 
 module.exports.get = function (req, res) {
     var error = req.query.err
-    res.render('workoutProgram', { title: 'Workout', err: error});
+    WorkoutModel.find({}, function (err, items){
+        /*items.forEach(function (item) {
+            console.log(item);
+        });*/
+
+        res.render('workoutProgram', { title: 'Workout', workoutlist: items, err: error});
+    });
+    //res.render('workoutProgram', { title: 'Workout', err: error});
+    
+
 };
 
 module.exports.post = function (req, res) {
@@ -22,7 +31,7 @@ module.exports.post = function (req, res) {
         } 
 
         console.log("A workout program with name: " + req.body.name + " was succesfully created!");
-        res.redirect('/');
+        res.redirect('/workoutProgram');
         // saved!
     });
 }
