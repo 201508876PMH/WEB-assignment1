@@ -3,8 +3,7 @@ var router = express.Router();
 const ctrl = require('../controllers/workoutProgramController');
 let auth = require('connect-ensure-login');
 
-router.get('/createworkoutprogram', 
-    auth.ensureLoggedIn('/login'), ctrl.createworkoutprogram);
+router.get('/createworkoutprogram', auth.ensureLoggedIn('/login'), ctrl.createworkoutprogram);
 
 router.get('/', ctrl.get);
 //router.get('/createworkoutprogram', ctrl.createworkoutprogram);
