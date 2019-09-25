@@ -32,7 +32,7 @@ module.exports.post = function (req, res) {
 
 module.exports.createworkoutprogram = function (req, res) {
     //var error = req.query.err;
-    res.render('createworkoutprogram', { user: req.user });
+    res.render('createworkoutprogram', { user: req.user, title: 'Dette er en placeholder for title'});
 }
 
 module.exports.addexerciseget = function (req, res) {
