@@ -1,13 +1,13 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 const passport = require('passport');
+const session = require('express-session');
 
 require('./app_server/models/db');
 require('./app_server/config/passport');
-
 
 var indexRouter = require('./app_server/routes/index');
 var workoutProgramRouter = require('./app_server/routes/workoutprogram');
@@ -21,8 +21,17 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'yayeet',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: false,
+    secure: false,
+    maxAge: 1000 * 3600 * 24 * 100 // 100 days
+  },
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());

@@ -2,12 +2,12 @@ var UserModel = require('../models/user');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-module.exports.get = function (req, res) {
+const get = function (req, res) {
     var error = req.query.err
-    res.render('createAccount', { title: 'Express', err: error });
-};
+    res.render('createAccount', { title: 'Express', err: error, user: req.user });
+}
 
-module.exports.post = function (req, res) {
+const post = function (req, res) {
     console.log(req.body);
 
     // Create an instance of model MyModel
@@ -35,11 +35,15 @@ module.exports.post = function (req, res) {
             // saved!
         });
     });
-
-
 }
 
-module.exports.userconfirmation = function (req, res) {
+const userconfirmation = function (req, res) {
     var error = req.query.err
-    res.render('userconfirmation', { title: 'User confirmation', err: error });
+    res.render('userconfirmation', { title: 'User confirmation', err: error, user: req.user });
 }
+
+module.exports = {
+    get,
+    post,
+    userconfirmation,
+};
