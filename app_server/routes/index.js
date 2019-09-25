@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const controllerLocations = require('../controllers/main');
+const passport = require('passport');
 
 console.log(controllerLocations);
 
@@ -12,5 +13,8 @@ router.get('/userconfirmation', controllerLocations.createAccount.userconfirmati
 router.post('/createAccount', controllerLocations.createAccount.post);
 
 router.get('/login', controllerLocations.login.get);
-router.post('/login', controllerLocations.login.post);
+router.post('/login', passport.authenticate('local', { failureRedirect: '/login' }), controllerLocations.login.post);
+//router.post('/login', passport.authenticate('local', {successRedirect: '/', failureRedirect: '/login' }));
+
+//router.post('/passport', passportLogic.passportLogic)
 module.exports = router;
