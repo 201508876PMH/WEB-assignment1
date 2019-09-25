@@ -5,7 +5,7 @@ var exerciseSchema = require('../models/exercise');
 module.exports.get = function (req, res) {
     var error = req.query.err;
     WorkoutModel.find({}, function (err, items) {
-        res.render('workoutprograms', { title: 'Workout', workoutlist: items, err: error });
+        res.render('workoutprograms', { title: 'Workout', workoutlist: items, err: error, user: req.user });
     });
 };
 
@@ -39,7 +39,7 @@ module.exports.addexerciseget = function (req, res) {
     var error = req.query.err;
     var workoutprogramid = req.params.workoutprogramid;
     WorkoutModel.findById(workoutprogramid, function (err, doc) {
-        res.render('addexercise', { title: 'Add exercise to workout program', workoutprogram: doc, err: error });
+        res.render('addexercise', { title: 'Add exercise to workout program', workoutprogram: doc, err: error, user: req.user });
     });
 
 }
@@ -49,7 +49,7 @@ module.exports.viewworkoutprogram = function (req, res) {
     var error = req.query.err;
     var workoutprogramid = req.params.workoutprogramid;
     WorkoutModel.findById(workoutprogramid, function (err, doc) {
-        res.render('viewworkoutprogram', { title: 'View workout program', workoutprogram: doc, workoutprogramid: workoutprogramid, err: error });
+        res.render('viewworkoutprogram', { title: 'View workout program', workoutprogram: doc, workoutprogramid: workoutprogramid, err: error, user: req.user });
     });
 }
 
