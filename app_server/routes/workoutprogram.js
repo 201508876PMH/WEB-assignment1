@@ -6,9 +6,8 @@ let auth = require('connect-ensure-login');
 router.get('/createworkoutprogram', auth.ensureLoggedIn('/login'), ctrl.createworkoutprogram);
 
 router.get('/', ctrl.get);
-//router.get('/createworkoutprogram', ctrl.createworkoutprogram);
-router.post('/createworkoutprogram', ctrl.post);
-router.get('/:workoutprogramid/addexercise', ctrl.addexerciseget);
-router.post('/:workoutprogramid/addexercise', ctrl.addexercise);
-router.get('/:workoutprogramid', ctrl.viewworkoutprogram);
+router.post('/createworkoutprogram', auth.ensureLoggedIn('/login'),  ctrl.post);
+router.get('/:workoutprogramid/addexercise', auth.ensureLoggedIn('/login'),  ctrl.addexerciseget);
+router.post('/:workoutprogramid/addexercise', auth.ensureLoggedIn('/login'),  ctrl.addexercise);
+router.get('/:workoutprogramid', auth.ensureLoggedIn('/login'),  ctrl.viewworkoutprogram);
 module.exports = router;

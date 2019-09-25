@@ -14,7 +14,6 @@ router.post('/createAccount', controllerLocations.createAccount.post);
 
 router.get('/login', controllerLocations.login.get);
 router.post('/login', passport.authenticate('local', { failureRedirect: '/login' }), controllerLocations.login.post);
-//router.post('/login', passport.authenticate('local', {successRedirect: '/', failureRedirect: '/login' }));
+router.get('/logout', controllerLocations.login.logout);
 
-//router.post('/passport', passportLogic.passportLogic)
 module.exports = router;
