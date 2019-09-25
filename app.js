@@ -9,10 +9,12 @@ const session = require('express-session');
 require('./app_server/models/db');
 require('./app_server/config/passport');
 
-var indexRouter = require('./app_server/routes/index');
-var workoutProgramRouter = require('./app_server/routes/workoutprogram');
+const indexRouter = require('./app_server/routes/index');
+const workoutProgramRouter = require('./app_server/routes/workoutprogram');
+const localsMiddleware = require('./app_server/middleware/locals');
 
-var app = express();
+
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname,'app_server', 'views'));
@@ -35,6 +37,8 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(localsMiddleware);
 
 app.use('/', indexRouter);
 app.use('/workoutprograms', workoutProgramRouter);

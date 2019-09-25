@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <ul class="nav justify-content-center">          
+    <!-- <ul class="nav justify-content-center">          
         <% if (user) { %>
         <li class="nav-item">
             <a class="nav-link" href="/workoutprograms">Workout programs</a>
@@ -28,4 +28,32 @@
             <a class="nav-link" href="/createAccount">Create account</a>
         </li>
         <% } %>         
-    </ul>
+    </ul> -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/createAccount">Create account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/workoutprograms">Workout programs</a>
+                    </li>
+                </ul>
+                <% if (locals.currentUser) {%>
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Hello, <%= currentUser.firstName %></a>
+                    </li>
+                </ul>
+                <% } %>
+            </nav>
+        </div>
+    </header>
+    
