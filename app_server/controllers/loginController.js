@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 
 module.exports.get = function (req, res) {
-    res.render('login', { title: 'Express', user: req.user });
+    res.render('login', { title: 'Express' });
 };
 
 module.exports.post = function (req, res) {

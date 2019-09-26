@@ -4,7 +4,7 @@ const saltRounds = 10;
 
 const get = function (req, res) {
     var error = req.query.err
-    res.render('createAccount', { title: 'Express', err: error, user: req.user });
+    res.render('createAccount', { title: 'Express', err: error });
 }
 
 const post = function (req, res) {
@@ -39,7 +39,7 @@ const post = function (req, res) {
 
 const userconfirmation = function (req, res) {
     var error = req.query.err
-    res.render('userconfirmation', { title: 'User confirmation', err: error, user: req.user });
+    res.render('userconfirmation', { title: 'User confirmation', err: error });
 }
 
 module.exports = {
