@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var dbURI = 'mongodb://localhost/FitnessApp';
+var dbURI = 'mongodb://heroku_9x52jczw:k980ff1pgl2iureg04c9dpil79@ds235411.mlab.com:35411/heroku_9x52jczw';
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 
 mongoose.connection.on('connected', () => {
